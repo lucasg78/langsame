@@ -14,3 +14,9 @@ def clases(request):
         cadena_respuesta += f"Clase: {clase.nombre} - Comisión: {clase.comision}" + " " +"<br/>"
     
     return HttpResponse(cadena_respuesta) 
+
+def profesores(request):
+    return render(request, "appclases/profesores.html")
+
+def alumnos(request):
+    return render(request, "appclases/alumnos.html")
