@@ -4,7 +4,7 @@ from appclases.models import Clase
 
 # Create your views here.
 def inicio(request):
-    return render(request, "appclases/index.html")
+    return render(request, "appclases/base.html")
 
 def clases(request):
     clases = Clase.objects.all()
