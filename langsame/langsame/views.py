@@ -31,6 +31,7 @@ def vista_plantilla(request):
     return HttpResponse(documento)
 
 
+# LISTADO DE ALUMNOS
 # ALTERNATIVA 1: CONTEXT
 def vista_listado_alumnos(request):
     # Abrimos el archivo

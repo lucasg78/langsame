@@ -18,8 +18,12 @@ def alumnos(request):
 def entregables(request):
     return render(request, "appclases/entregables.html")
 
+def aulas(request):
+    return render(request, "appclases/aulas.html")
+
 
 # def clases(request):
+    #Obtenemos el listado de objetos en la BD
     #clases = Clase.objects.all()
     
     #cadena_respuesta = ""
