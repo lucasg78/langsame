@@ -9,6 +9,17 @@ def inicio(request):
 def clases(request):
     return render(request, "appclases/clases.html")
 
+def creacion_clase(request):
+
+    if request.method == "POST":
+        nombre_clase = request.POST["clase"]
+        numero_comision = request.POST["comision"]
+        
+        clase = Clase(nombre=nombre_clase, comision=numero_comision)
+        clase.save()
+    
+    return render(request, "appclases/clase_formulario.html")
+
 def profesores(request):
     return render(request, "appclases/profesores.html")
 

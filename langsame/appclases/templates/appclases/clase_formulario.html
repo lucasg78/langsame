@@ -1,0 +1,12 @@
+{% extends 'appclases/base.html' %}
+
+{% block contenido %}
+
+<form action="/clases/clases/crear/" method="post">
+    {% csrf_token %}
+    <p>Clase: <input type="text" name="clase"></p>
+    <p>Comisión: <input type="number" name="comision"></p>
+    <input type="submit" value="Crear">
+</form>
+
+{% endblock %}
