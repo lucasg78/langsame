@@ -1,0 +1,14 @@
+{% extends 'appclases/base.html' %}
+
+{% block contenido %}
+
+<form action="/clases/profesores/crear/" method="post">
+    {% csrf_token %}
+    <h1>Alta de profesor</h1>
+    <p>Nombre: <input type="text" name="nombre"></p>
+    <p>Apellido: <input type="text" name="apellido"></p>
+    <p>Email: <input type="email" name="email"></p>
+    <input type="submit" value="Crear">
+</form>
+
+{% endblock %}

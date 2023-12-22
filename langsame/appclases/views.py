@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from appclases.models import Clase
+from appclases.models import Clase, Profesor
 
 # Create your views here.
 def inicio(request):
@@ -22,6 +22,18 @@ def creacion_clase(request):
 
 def profesores(request):
     return render(request, "appclases/profesores.html")
+
+def creacion_profesor(request):
+
+    if request.method == "POST":
+        nombre_profesor = request.POST["nombre"]
+        apellido_profesor = request.POST["apellido"]
+        email_profesor = request.POST["email"]
+        
+        profesor = Profesor(nombre=nombre_profesor, apellido=apellido_profesor, email=email_profesor)
+        profesor.save()
+        
+    return render(request, "appclases/profesor_formulario.html")
 
 def alumnos(request):
     return render(request, "appclases/alumnos.html")
