@@ -1,10 +1,12 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from appclases.models import Clase, Profesor
+from appclases.forms import ProfesorFormulario
 
 # Create your views here.
 def inicio(request):
     return render(request, "appclases/index.html")
+
 
 def clases(request):
     return render(request, "appclases/clases.html")
@@ -20,11 +22,11 @@ def creacion_clase(request):
     
     return render(request, "appclases/clase_formulario.html")
 
+
 def profesores(request):
     return render(request, "appclases/profesores.html")
 
 def creacion_profesor(request):
-
     if request.method == "POST":
         nombre_profesor = request.POST["nombre"]
         apellido_profesor = request.POST["apellido"]
@@ -32,14 +34,32 @@ def creacion_profesor(request):
         
         profesor = Profesor(nombre=nombre_profesor, apellido=apellido_profesor, email=email_profesor)
         profesor.save()
-        
     return render(request, "appclases/profesor_formulario.html")
+
+def creacion_profesor2(request):
+    if request.method == "POST":
+        formulario = ProfesorFormulario(request.POST)
+        # Validamos que el formulario no tenga problemas
+        if formulario.is_valid():
+            # Recuperamos los datos del atributo cleaned_data
+            data = formulario.cleaned_data
+            profesor = Profesor(nombre=data["nombre"], apellido=data["apellido"], email=data["email"])
+            profesor.save()
+        
+    formulario = ProfesorFormulario()
+
+    contexto = {"formulario": formulario}            
+    
+    return render(request, "appclases/profesor_formulario2.html", contexto)
+
 
 def alumnos(request):
     return render(request, "appclases/alumnos.html")
 
+
 def entregables(request):
     return render(request, "appclases/entregables.html")
+
 
 def aulas(request):
     return render(request, "appclases/aulas.html")
