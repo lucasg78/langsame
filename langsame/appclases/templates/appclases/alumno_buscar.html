@@ -2,9 +2,9 @@
 
 {% block contenido %}
 
-<form action="{% url 'profesor-buscar-resultados' %}" method="get">
+<form action="{% url 'alumno-buscar-resultados' %}" method="get">
     {% csrf_token %}
-    <h1>Buscar profesor</h1>
+    <h1>Buscar alumno</h1>
     <p>Apellido: <input type="text" name="apellido"></p>
     <input type="submit" value="Buscar">
 </form>

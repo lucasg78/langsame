@@ -1,28 +1,37 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from appclases.models import Clase, Profesor
+from appclases.models import Clase, Profesor, Alumno
 from appclases.forms import ProfesorFormulario
 
-# Create your views here.
+# Inicio
 def inicio(request):
     return render(request, "appclases/index.html")
 
 
+# Clases
 def clases(request):
     return render(request, "appclases/clases.html")
 
 def creacion_clase(request):
-
     if request.method == "POST":
         nombre_clase = request.POST["clase"]
-        numero_comision = request.POST["comision"]
-        
+        numero_comision = request.POST["comision"] 
         clase = Clase(nombre=nombre_clase, comision=numero_comision)
         clase.save()
-    
     return render(request, "appclases/clase_formulario.html")
 
 
+def buscar_clase(request):
+    return render(request, "appclases/clase_buscar.html")
+
+def resultados_buscar_clase(request):
+    print(request.GET)
+    clase = request.GET["clase"]
+    clases = Clase.objects.filter(nombre__icontains=clase)
+    return render(request, "appclases/resultados_buscar_clase.html", {"clases": clases})
+
+
+# Profesores
 def profesores(request):
     return render(request, "appclases/profesores.html")
 
@@ -30,10 +39,9 @@ def creacion_profesor(request):
     if request.method == "POST":
         nombre_profesor = request.POST["nombre"]
         apellido_profesor = request.POST["apellido"]
-        email_profesor = request.POST["email"]
-        
+        email_profesor = request.POST["email"] 
         profesor = Profesor(nombre=nombre_profesor, apellido=apellido_profesor, email=email_profesor)
-        profesor.save()
+        profesor.save()   
     return render(request, "appclases/profesor_formulario.html")
 
 def creacion_profesor2(request):
@@ -44,36 +52,45 @@ def creacion_profesor2(request):
             # Recuperamos los datos del atributo cleaned_data
             data = formulario.cleaned_data
             profesor = Profesor(nombre=data["nombre"], apellido=data["apellido"], email=data["email"])
-            profesor.save()
-        
+            profesor.save()        
     formulario = ProfesorFormulario()
-
     contexto = {"formulario": formulario}            
-    
     return render(request, "appclases/profesor_formulario2.html", contexto)
 
 def buscar_profesor(request):
     return render(request, "appclases/profesor_buscar.html")
-    pass
 
 def resultados_buscar_profesor(request):
     print(request.GET)
     apellido_profesor = request.GET["apellido"]
     profesores = Profesor.objects.filter(apellido__icontains=apellido_profesor)
     return render(request, "appclases/resultados_buscar_profesor.html", {"profesores": profesores})
-    pass
 
 
+# Alumnos
 def alumnos(request):
     return render(request, "appclases/alumnos.html")
 
+def buscar_alumno(request):
+    return render(request, "appclases/alumno_buscar.html")
 
+def resultados_buscar_alumno(request):
+    print(request.GET)
+    apellido_alumno = request.GET["apellido"]
+    alumnos = Alumno.objects.filter(apellido__icontains=apellido_alumno)
+    return render(request, "appclases/resultados_buscar_alumno.html", {"alumnos": alumnos})
+
+
+# Entregables
 def entregables(request):
     return render(request, "appclases/entregables.html")
 
 
+# Aulas
 def aulas(request):
     return render(request, "appclases/aulas.html")
+
+
 
 
 # def clases(request):

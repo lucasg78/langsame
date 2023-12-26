@@ -1,0 +1,17 @@
+{% extends 'appclases/base.html' %}
+
+{% block contenido %}
+
+<ul>
+
+    {% for clase in clases %}
+
+        <h2>Resultados:</h2>
+            <p>Clase: {{clase.nombre}}</p>
+            <p>Comisión: {{clase.comision}}</p>
+<hr/>
+    {% endfor %}
+
+</ul>
+
+{% endblock %}

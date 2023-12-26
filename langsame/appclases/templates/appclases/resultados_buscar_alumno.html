@@ -1,0 +1,16 @@
+{% extends 'appclases/base.html' %}
+
+{% block contenido %}
+
+<ul>
+
+    {% for alumno in alumnos %}
+
+        <h2>Resultados:</h2>
+        <li>{{alumno.nombre}} {{alumno.apellido}} - email: {{alumno.email}}</li>
+
+    {% endfor %}
+
+</ul>
+
+{% endblock %}
