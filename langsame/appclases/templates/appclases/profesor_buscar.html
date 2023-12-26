@@ -1,0 +1,12 @@
+{% extends 'appclases/base.html' %}
+
+{% block contenido %}
+
+<form action="{% url 'profesor-resultados' %}" method="get">
+    {% csrf_token %}
+    <h1>Buscar profesor</h1>
+    <p>Apellido: <input type="text" name="apellido"></p>
+    <input type="submit" value="Buscar">
+</form>
+
+{% endblock %}

@@ -52,6 +52,17 @@ def creacion_profesor2(request):
     
     return render(request, "appclases/profesor_formulario2.html", contexto)
 
+def buscar_profesor(request):
+    return render(request, "appclases/profesor_buscar.html")
+    pass
+
+def resultados_buscar_profesor(request):
+    print(request.GET)
+    apellido_profesor = request.GET["apellido"]
+    profesores = Profesor.objects.filter(apellido__icontains=apellido_profesor)
+    return render(request, "appclases/resultados_buscar_profesor.html", {"profesores": profesores})
+    pass
+
 
 def alumnos(request):
     return render(request, "appclases/alumnos.html")
