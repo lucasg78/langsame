@@ -14,7 +14,9 @@ def inicio(request):
 
 # Clases
 def clases(request):
-    return render(request, "appclases/clases.html")
+    clases = Clase.objects.all() # Obtener todos los registros de ese modelo
+    contexto = {"listado_clases": clases}
+    return render(request, "appclases/clases.html", contexto)
 
 def creacion_clase(request):
     if request.method == "POST":
@@ -23,7 +25,6 @@ def creacion_clase(request):
         clase = Clase(nombre=nombre_clase, comision=numero_comision)
         clase.save()
     return render(request, "appclases/clase_formulario.html")
-
 
 def buscar_clase(request):
     return render(request, "appclases/clase_buscar.html")

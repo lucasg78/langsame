@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'appclases',
+    'appclases', # Agrego la app 'appclases'
 ]
 
 MIDDLEWARE = [
@@ -55,6 +55,7 @@ ROOT_URLCONF = 'langsame.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        # Incorporo la ruta a los templates
         'DIRS': [r"G:\Mi unidad\Formación\Programación\Python\Práctica\langsame\langsame\langsame\templates"],
         'APP_DIRS': True,
         'OPTIONS': {

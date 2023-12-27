@@ -23,5 +23,5 @@ urlpatterns = [
     path('inicio/', vista_plantilla),
     path('alumnos/', vista_listado_alumnos),
     path('alumnos2/', vista_listado_alumnos2),
-    path("clases/", include("appclases.urls"))
+    path("clases/", include("appclases.urls")) # Incluyo las rutas de la app 'appclases'
 ]
