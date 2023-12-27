@@ -3,6 +3,10 @@ from django.shortcuts import render
 from appclases.models import Clase, Profesor, Alumno
 from appclases.forms import ProfesorFormulario
 
+# Dependencias para resolver apertura de archivos usando rutas relativas 
+from langsame.settings import BASE_DIR
+import os
+
 # Inicio
 def inicio(request):
     return render(request, "appclases/index.html")
@@ -102,3 +106,11 @@ def aulas(request):
     #    cadena_respuesta += f"Clase: {clase.nombre} - Comisión: {clase.comision}" + " " +"<br/>"
     
     #return HttpResponse(cadena_respuesta)
+    
+    
+def test(request):
+    ruta = os.path.join(BASE_DIR, "appclases/templates/appclases/base.html")
+    print(BASE_DIR, __file__)
+    file = open(ruta)
+    
+    return HttpResponse(file.read())
