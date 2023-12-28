@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from appclases.models import Clase, Profesor, Alumno
 from appclases.forms import ProfesorFormulario, ClaseFormulario
 
@@ -57,6 +57,12 @@ def resultados_buscar_clase(request):
     clase = request.GET["clase"]
     clases = Clase.objects.filter(nombre__icontains=clase)
     return render(request, "appclases/resultados_buscar_clase.html", {"clases": clases})
+
+def borrar_clase(request, id):
+    clase = Clase.objects.get(id=id)
+    clase.delete()
+        
+    return redirect("clases")
 
 
 # Profesores

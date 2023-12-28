@@ -6,6 +6,7 @@ urlpatterns = [
     path("clases/", clases, name="clases"),
     #path("clases/crear/", creacion_clase, name="clases-crear"),
     path("clases/buscar/", buscar_clase, name="clase-buscar"),
+    path("clases/borrar/<id>/", borrar_clase, name="clase-borrar"),
     path("clases/buscar/resultados/", resultados_buscar_clase, name="clase-buscar-resultados"),
     path("profesores/", profesores, name="profesores"),
     path("profesores/crear/", creacion_profesor, name="profesor-crear"),
