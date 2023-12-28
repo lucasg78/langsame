@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from appclases.models import Clase, Profesor, Alumno
-from appclases.forms import ProfesorFormulario
+from appclases.forms import ProfesorFormulario, ClaseFormulario
 
 # Dependencias para resolver apertura de archivos usando rutas relativas 
 from langsame.settings import BASE_DIR
@@ -14,17 +14,40 @@ def inicio(request):
 
 # Clases
 def clases(request):
+    
+    errores = ""
+    
+    # Validamos tipo de petición
+    if request.method == "POST":
+        # Cargamos los datos en el formulario
+        formulario = ClaseFormulario(request.POST)
+        # Validamos los datos
+        if formulario.is_valid():
+            # Recuperamos los datos limpios
+            data = formulario.cleaned_data
+            # Creamos la clase
+            clase = Clase(nombre=data["nombre"], comision=data["comision"])
+            # Guardamos la clase
+            clase.save()
+        else:
+            # Si el formulario no es válido, guardamos los errores para mostrarlos
+            errores = formulario.errors
+    # Recuperamos todas las clases de la BD
     clases = Clase.objects.all() # Obtener todos los registros de ese modelo
-    contexto = {"listado_clases": clases}
+    # Creamos el formulario vacío
+    formulario = ClaseFormulario()
+    # Creamos el contexto
+    contexto = {"listado_clases": clases, "formulario": formulario, "errores": errores}
+    # Retornamos la respuesta
     return render(request, "appclases/clases.html", contexto)
 
-def creacion_clase(request):
+""" def creacion_clase(request):
     if request.method == "POST":
         nombre_clase = request.POST["clase"]
         numero_comision = request.POST["comision"] 
         clase = Clase(nombre=nombre_clase, comision=numero_comision)
         clase.save()
-    return render(request, "appclases/clase_formulario.html")
+    return render(request, "appclases/clase_formulario.html") """
 
 def buscar_clase(request):
     return render(request, "appclases/clase_buscar.html")
