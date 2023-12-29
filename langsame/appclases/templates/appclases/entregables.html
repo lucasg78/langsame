@@ -2,10 +2,19 @@
 
 {% block contenido %}
 
+<h1>Desafíos entregables</h1>
 
-<h1>Learn languages</h1>
-<h2>Deliverables</h2>
+<ul>
+    {% for entregable in object_list %} 
+    <li>{{entregable.nombre}} 
+        <a href="{% url 'entregables-detail' entregable.id %}" style="text-decoration: none; color:blue">Detalle</a>
+        <a href="{% url 'entregables-update' entregable.id %}" style="text-decoration: none; color:blue">Actualizar</a>
+        <a href="{% url 'entregables-delete' entregable.id %}" style="text-decoration: none; color:blue">Borrar</a>
+    </li>
+    <li>{{entregable.fechaDeEntrega}}</li>
+    {% endfor %}
+</ul>
 
-<a href="{% url 'inicio' %}">Ir a inicio</a>
+<a href="{% url 'inicio' %}">Home</a>
 
 {% endblock %}

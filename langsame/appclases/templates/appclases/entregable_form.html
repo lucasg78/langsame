@@ -1,0 +1,20 @@
+{% extends "appclases/base.html" %}
+
+{% load static %}
+
+{% block contenido %}
+
+<div class="container" style="margin:11% 0 15% 5%; padding: 0 20% 0 20%;">
+    <h2 style="font-weight: bold; font-size: 40px">Crear/Actualizar entregable</h2>
+    <br>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="d-grid">
+            <button class="btn btn-primary btn-lg enabled" id="submitButton" type="submit">Crear/Actualizar</button>
+        </div>
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,11 +1,13 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from appclases.models import Clase, Profesor, Alumno
+from appclases.models import Clase, Profesor, Alumno, Entregable
 from appclases.forms import ProfesorFormulario, ClaseFormulario
 
 # Dependencias para resolver apertura de archivos usando rutas relativas 
 from langsame.settings import BASE_DIR
 import os
+
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 # Inicio
 def inicio(request):
@@ -135,6 +137,29 @@ def resultados_buscar_alumno(request):
 def entregables(request):
     return render(request, "appclases/entregables.html")
 
+class EntregablesList(ListView): 
+    model = Entregable
+    template_name = "appclases/entregables.html"
+
+class EntregablesDetail(DetailView):
+    model = Entregable
+    template_name = "appclases/entregables_detalle.html"
+    
+class EntregablesCreate(CreateView):
+    model = Entregable
+    success_url = "/clases/entregables/"
+    fields = ["nombre", "fechaDeEntrega", "entregado"]   
+    template_name = "appclases/entregable_form.html"
+
+class EntregablesUpdate(UpdateView):
+    model = Entregable
+    success_url = "/clases/entregables/"
+    fields = ["nombre", "fechaDeEntrega", "entregado"]    
+
+class EntregablesDelete(DeleteView):
+    model = Entregable
+    success_url = "/clases/entregables/"
+                
 
 # Aulas
 def aulas(request):

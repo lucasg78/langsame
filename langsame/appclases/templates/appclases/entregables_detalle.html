@@ -1,0 +1,19 @@
+{% extends "appclases/base.html" %}
+
+{% load static %}
+
+{% block contenido %}
+
+<div class="container" style="margin:11% 0 5% 5%; padding: 0 20% 0 20%;">
+    <div class="card text-center">
+        <div class="card-header" style="font-size: 20px; font-weight: bold;">Detalle del desafío entregable</div>
+        <div class="card-body">
+          <h5 class="card-title">Nombre: {{ entregable.nombre }}</h5><hr>
+          <p class="card-text">Fecha de entrega: <br>{{ entregable.fechaDeEntrega }}</p><hr>
+          <p class="card-text">Entregado: <br>{{ entregable.entregado }}</p><hr>
+          <a href="{% url 'entregables' %}" class="btn btn-primary">Volver</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
