@@ -20,7 +20,7 @@
 {% if listado_clases %}
     <ul>
     {% for clase in listado_clases %}
-        <li> {{clase}} <a href="{% url 'clase-borrar' clase.id %}">Borrar</a></li>
+        <li> {{clase}} <a href="{% url 'clase-borrar' clase.id %}">Borrar</a>~<a href="{% url 'clase-editar' clase.id %}">Editar</a></li>
     {% endfor %}
     </ul>
 {% else %}

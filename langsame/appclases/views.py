@@ -58,6 +58,22 @@ def resultados_buscar_clase(request):
     clases = Clase.objects.filter(nombre__icontains=clase)
     return render(request, "appclases/resultados_buscar_clase.html", {"clases": clases})
 
+def editar_clase(request, id):
+    clase = Clase.objects.get(id=id)
+    if request.method == "POST":
+        formulario = ClaseFormulario(request.POST)
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+            clase.nombre = data["nombre"]
+            clase.comision = data["comision"]
+            clase.save()
+            return redirect("clases")
+        else:
+            return render(request, "appclases/clase_editar.html", {"formulario": formulario, "errores": formulario.errors})
+    else:
+        formulario = ClaseFormulario(initial={"nombre":clase.nombre, "comision":clase.comision})    
+        return render(request, "appclases/clase_editar.html", {"formulario": formulario, "errores": ""})
+        
 def borrar_clase(request, id):
     clase = Clase.objects.get(id=id)
     clase.delete()
