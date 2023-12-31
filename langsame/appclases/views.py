@@ -7,11 +7,54 @@ from appclases.forms import ProfesorFormulario, ClaseFormulario
 from langsame.settings import BASE_DIR
 import os
 
+# Class Based Views (CBV)
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+
+# Login
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, authenticate
+
+
 
 # Inicio
 def inicio(request):
     return render(request, "appclases/index.html")
+
+
+# Login
+def login(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+
+        if form.is_valid():
+            usuario = form.cleaned_data.get("username")
+            password = form.cleaned_data.get("password")
+
+            user = authenticate(username=usuario, password=password)
+
+            if user is not None:
+                login(request, user)
+                return render(
+                    request,
+                    "appclases/index.html",
+                )
+            else:
+                return render(
+                    request,
+                    "appclases/login_error.html",
+                    {"mensaje": "Datos Incorrectos. Intente nuevamente."},
+                )
+
+        else:
+            return render(
+                request,
+                "AppBonos/login_error.html",
+                {"mensaje": "Datos Incorrectos. Intente nuevamente."},
+            )
+
+    form = AuthenticationForm()
+
+    return render(request, "appclases/login.html", {"form": form})
 
 
 # Clases

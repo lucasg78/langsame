@@ -27,7 +27,7 @@ urlpatterns = [
     path("entregables/crear",EntregablesCreate.as_view(), name="entregables-create"),   
     path("entregables/editar/<pk>/",EntregablesUpdate.as_view(), name="entregables-update"),  
     path("entregables/borrar/<pk>/",EntregablesDelete.as_view(), name="entregables-delete"),   
-     
+    
     path("aulas/", aulas, name="aulas"),
     
     path("test", test)
