@@ -31,9 +31,13 @@
             <a class="navbar-brand" href="{% url 'profesores' %}">Teachers</a>
             <a class="navbar-brand" href="{% url 'entregables' %}">Deliverables</a>
             <a class="navbar-brand" href="{% url 'aulas' %}">Classrooms</a>
+            <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
             <a class="btn btn-primary" href="#signup">Sign Up</a>
         </div>
     </nav>
+
+    {% block contenido %}
+
     <!-- Masthead-->
     <header class="masthead">
         <div class="container position-relative">
@@ -47,9 +51,6 @@
             </div>
         </div>
     </header>
-
-
-    {% block contenido %}
 
     {% endblock %}
 
