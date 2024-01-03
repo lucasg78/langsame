@@ -10,11 +10,13 @@
         <h2 style="font-weight: bold; font-size: 40px">Eliminará un registro de la base de datos</h2>
         <p>¿Está seguro de que desea eliminar el entregable '{{object.nombre}}'?</p>
         <br>
-        <div class="d-grid" style="padding: 0 80% 0 0; align-items: flex-start;">
+        <span class="d-grid" style="padding: 0 80% 0 0; align-items: flex-start;">
             <button class="btn btn-primary btn-lg enabled" id="submitButton" type="submit">Confirmar</button>
-        </div>
-        <a href="{% url 'entregables'}">Volver al listado</a>
+        </span>
     </form>
+    <span>
+        <a href="{% url 'entregables' %}">Volver al listado</a>
+    </span>
 </div>
 
 {% endblock %}
