@@ -1,6 +1,12 @@
 from django.http import HttpResponse
+
+# Shortcuts
 from django.shortcuts import render, redirect
+
+# Models
 from appclases.models import Clase, Profesor, Alumno, Entregable
+
+# Forms
 from appclases.forms import ProfesorFormulario, ClaseFormulario
 
 # Dependencias para resolver apertura de archivos usando rutas relativas 
@@ -22,7 +28,7 @@ def inicio(request):
 
 
 # Login
-def login(request):
+def iniciar_sesion(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
 
@@ -48,7 +54,7 @@ def login(request):
         else:
             return render(
                 request,
-                "AppBonos/login_error.html",
+                "appclases/login_error.html",
                 {"mensaje": "Datos Incorrectos. Intente nuevamente."},
             )
 

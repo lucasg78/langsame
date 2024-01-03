@@ -6,12 +6,11 @@
 
 <ul>
     {% for entregable in object_list %} 
-    <li>{{entregable.nombre}} 
-        <a href="{% url 'entregables-detail' entregable.id %}" style="text-decoration: none; color:blue">Detalle</a>
-        <a href="{% url 'entregables-update' entregable.id %}" style="text-decoration: none; color:blue">Actualizar</a>
+    <li>Entregable: {{entregable.nombre}} >>> Fecha de entrega: {{entregable.fechaDeEntrega}}
+        <a href="{% url 'entregables-detail' entregable.id %}" style="text-decoration: none; color:blue">Detalle</a>|
+        <a href="{% url 'entregables-update' entregable.id %}" style="text-decoration: none; color:blue">Actualizar</a>|
         <a href="{% url 'entregables-delete' entregable.id %}" style="text-decoration: none; color:blue">Borrar</a>
     </li>
-    <li>{{entregable.fechaDeEntrega}}</li>
     {% endfor %}
 </ul>
 

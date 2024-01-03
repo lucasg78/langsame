@@ -30,7 +30,7 @@ urlpatterns = [
     
     path("aulas/", aulas, name="aulas"),
     
-    path("login/", login, name="login"),
+    path("login/", iniciar_sesion, name="login"),
     
     path("test", test)
 ]

@@ -1,0 +1,18 @@
+{% extends "appclases/base.html" %}
+
+{% load static %}
+
+{% block contenido %}
+
+<div class="container" style="margin:11% 0 5% 5%; padding: 0 20% 0 20%;">
+    <h2 style="font-weight: bold; font-size: 40px">Error en inicio de sesión</h2>
+    <br>
+    {% if mensaje %}
+       <p> {{ mensaje }} </p>
+    {% endif %}
+    <div class="d-grid">
+        <a href="{% url 'login' %}" class="btn btn-primary">Volver</a>
+    </div>
+</div>
+
+{% endblock %}
